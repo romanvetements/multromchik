@@ -1,0 +1,112 @@
+#include "TXLib.h"
+
+void drawSky()
+{
+    //–исую небо
+    txSetColor (TX_BLUE);
+    txSetFillColor (TX_BLUE);
+    txRectangle (0, 0, 800, 600);
+}
+
+void drawLand()
+{
+
+    //–сую землю
+    txSetColor (TX_BLACK);
+    txSetFillColor (TX_GREEN);
+    txRectangle (0, 388, 800, 600);
+
+}
+
+void drawHome()
+{
+
+    //–сую дом
+    txSetColor (TX_BLACK);
+    txSetFillColor (TX_BROWN);
+    txRectangle (285, 240, 548, 472);
+
+    txSetColor (TX_BLACK);
+    txSetFillColor (TX_GREY);
+    txRectangle (390, 350, 462, 470);
+
+    //–исую крышу
+    txSetColor (TX_BLACK);
+    txSetFillColor (TX_BROWN);
+    POINT star[3] = {{286,239}, {415,100}, {548,239}};
+    txPolygon (star, 3);
+
+}
+
+void drawTree()
+{
+
+//–исую дерево
+    txSetColor (TX_BLACK);
+    txSetFillColor (TX_BROWN);
+    txRectangle (116, 413, 140, 529);
+
+    txSetColor (TX_BLACK);
+    txSetFillColor (TX_GREEN);
+    txEllipse (90, 310, 160, 450);
+
+}
+
+void drawSun(int x)
+{
+
+//–исую солнце
+    txSetColor (TX_BLACK);
+    txSetFillColor (TX_YELLOW);
+    txEllipse (x+24-24, 11, x+122-24, 111);
+
+}
+
+void drawMan(int x)
+{
+
+// рисую мужыка
+    txSetColor (TX_BLACK);
+    txSetFillColor (RGB(255, 210, 166));
+    txCircle (x+660, 430, 20); // head
+    txSetColor (RGB(255, 210, 166), 7);
+    txLine(660, 450, 660, 520); //body
+    txLine(660, 465, 625, 490);  //left arm
+    txLine(660, 465, 690, 490);   // right arm
+    txLine(660, 520, 640, 560);    //left leg
+    txLine(660, 520, 680, 560);      //right leg
+
+
+}
+
+
+
+
+
+
+int main()
+{
+txCreateWindow (800, 600);
+
+     int xSun = 24;
+
+
+    while(xSun<800)
+    {
+        txBegin();
+        drawSky();
+        drawSun(xSun);
+        drawLand();
+        drawHome();
+        drawTree();
+        drawMan();
+        txEnd();
+
+        xSun=xSun+5;
+        txSleep(10);
+    }
+
+
+txTextCursor (false);
+return 0;
+}
