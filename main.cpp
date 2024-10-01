@@ -62,7 +62,7 @@ void drawSun(int x)
 
 }
 
-void drawMan(int x)
+void drawMan(int x, int xLegs, int xHands)
 {
 
 // рисую мужыка
@@ -70,11 +70,11 @@ void drawMan(int x)
     txSetFillColor (RGB(255, 210, 166));
     txCircle (x+660-660, 430, 20); // head
     txSetColor (RGB(255, 210, 166), 7);
-    txLine(x+660-660, 450, x+660-660, 520); //body
-    txLine(x+660-660, 465, x+625-660, 490);  //left arm
-    txLine(x+660-660, 465, x+690-660, 490);   // right arm
-    txLine(x+660-660, 520, x+640-660, 560);    //left leg
-    txLine(x+660-660, 520, x+680-660, 560);      //right leg
+    txLine(x, 450, x, 520); //body
+    txLine(x, 465, x-35+xHands, 490);  //left arm
+    txLine(x, 465, x+30-xHands, 490);   // right arm
+    txLine(x, 520, x-20+xLegs, 560);    //left leg
+    txLine(x, 520, x+20-xLegs, 560);      //right leg
 
 
 }
@@ -90,6 +90,8 @@ txCreateWindow (800, 600);
 
      int xSun = 24;
      int xMan = 660;
+      int xLegs = 0;
+      int xHands = 0;
 
     while(xMan>0)
     {
@@ -99,10 +101,23 @@ txCreateWindow (800, 600);
         drawLand();
         drawHome();
         drawTree();
-        drawMan(xMan);
+        drawMan(xMan, xLegs, xHands);
         txEnd();
+        xLegs=xLegs + 10;
+        xMan=xMan-5;
+        xSun=xSun+5;
+        txSleep(5);
 
 
+        txBegin();
+        drawSky();
+        drawSun(xSun);
+        drawLand();
+        drawHome();
+        drawTree();
+        drawMan(xMan, xLegs, xHands);
+        txEnd();
+        xLegs=xLegs - 10;
         xMan=xMan-5;
         xSun=xSun+5;
         txSleep(5);
