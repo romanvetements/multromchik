@@ -79,6 +79,15 @@ void drawMan(int x, int xLegs, int xHands)
 
 }
 
+void drawBall (int x, int xLinesBall)
+{
+                                // рисую м€ч
+  txSetColor (TX_BLACK);
+  txSetFillColor (RGB(237, 28, 36));
+  txEllipse (x+79-79, 518, x+133-79, 571);
+  txLine (x,543, x-53+xLinesBall, 543);
+  txLine (x, 518, x-27+xLinesBall, 570);
+}
 
 
 
@@ -92,6 +101,9 @@ txCreateWindow (800, 600);
      int xMan = 660;
       int xLegs = 0;
       int xHands = 0;
+      int xBall = 0;
+      int xLinesBall = 0;
+
 
     while(xMan>0)
     {
@@ -102,6 +114,7 @@ txCreateWindow (800, 600);
         drawHome();
         drawTree();
         drawMan(xMan, xLegs, xHands);
+        drawBall(xBall, xLinesBall);
         txEnd();
         xLegs=xLegs + 10;
         xMan=xMan-5;
@@ -116,12 +129,54 @@ txCreateWindow (800, 600);
         drawHome();
         drawTree();
         drawMan(xMan, xLegs, xHands);
+        drawBall(xBall, xLinesBall);
         txEnd();
         xLegs=xLegs - 10;
         xMan=xMan-5;
         xSun=xSun+5;
         txSleep(5);
+
     }
+
+    while(xMan<700)
+    {
+        txBegin();
+        drawSky();
+        drawSun(xSun);
+        drawLand();
+        drawHome();
+        drawTree();
+        drawMan(xMan, xLegs, xHands);
+        drawBall(xBall, xLinesBall);
+
+        txEnd();
+        xLegs=xLegs + 10;
+        xMan=xMan+5;
+        xSun=xSun-5;
+        xBall=xBall+5;
+        xLinesBall=xLinesBall+5;
+        txSleep(5);
+
+
+        txBegin();
+        drawSky();
+        drawSun(xSun);
+        drawLand();
+        drawHome();
+        drawTree();
+        drawMan(xMan, xLegs, xHands);
+        drawBall(xBall, xLinesBall);
+
+        txEnd();
+        xLegs=xLegs - 10;
+        xMan=xMan+5;
+        xSun=xSun-5;
+        xBall=xBall+5;
+        xLinesBall=xLinesBall+5;
+        txSleep(5);
+
+    }
+
 
 
 txTextCursor (false);
